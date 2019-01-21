@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var countriesRouter = require('./routes/countries');
 
 var app = express();
 
@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/v1/', indexRouter);
+app.use('/api/v1/countries', countriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,7 +46,7 @@ app.all("*", function (req, res, next) {
 
 // Port must be set to 8080 because incoming http requests are routed from port 80 to port 8080.
 app.listen(5555, function () {
-  console.log('Node app is running on port 4545.');
+  console.log('Node app is running on port 5555.');
 });
 
 module.exports = app;
